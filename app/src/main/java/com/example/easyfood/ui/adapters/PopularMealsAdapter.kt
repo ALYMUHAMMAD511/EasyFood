@@ -17,6 +17,7 @@ class PopularMealsAdapter : RecyclerView.Adapter<PopularMealsAdapter.PopularMeal
         notifyDataSetChanged()
     }
 
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PopularMealsViewHolder {
         return PopularMealsViewHolder(PopularItemsBinding.inflate(LayoutInflater.from(parent.context), parent, false))
     }
