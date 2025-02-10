@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">EasyFood</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="home_fragment">Home Fragment</string>
+    <string name="favorites_fragment">Favorites Fragment</string>
+    <string name="categories_fragment">Categories Fragment</string>
+    <string name="home">Home</string>
+    <string name="favorites">Favorites</string>
+    <string name="categories">Categories</string>
+    <string name="search_home">search home</string>
+    <string name="what_would_you_like_to_eat">What would you like to eat?</string>
+    <string name="random_meal">Random Meal</string>
+    <string name="over_populate_items">Over Populate Items</string>
+    <string name="collapsing_app_bar">Collapsing App Bar</string>
+    <string name="nested_scroll">Nested Scroll</string>
+    <string name="add_to_favorites">Add to Favorites</string>
+    <string name="category_beef">Category : Beef</string>
+    <string name="area_palestine">Area : Palestine</string>
+    <string name="instructions">- Instructions:</string>
+    <string name="youtube">YouTube</string>
+</resources>
