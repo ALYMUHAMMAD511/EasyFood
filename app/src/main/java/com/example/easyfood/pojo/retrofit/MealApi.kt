@@ -1,6 +1,6 @@
 package com.example.easyfood.pojo.retrofit
 
-import com.example.easyfood.data.Meals
+import com.example.easyfood.data.meals.Meals
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query

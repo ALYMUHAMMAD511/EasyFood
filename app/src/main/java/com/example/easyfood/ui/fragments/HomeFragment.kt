@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
-import com.example.easyfood.data.Meal
+import com.example.easyfood.data.meals.Meal
 import com.example.easyfood.databinding.FragmentHomeBinding
 import com.example.easyfood.ui.activities.MealActivity
 import com.example.easyfood.ui.view_models.HomeViewModel
