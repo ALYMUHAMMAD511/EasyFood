@@ -20,4 +20,8 @@
     <string name="instructions">- Instructions:</string>
     <string name="youtube">YouTube</string>
     <string name="popular_items">Popular Items</string>
+    <string name="beef_16">Beef : 16</string>
+    <string name="category_image">Category Image</string>
+    <string name="beef">Beef</string>
+    <string name="category_name">Category Name</string>
 </resources>

@@ -5,15 +5,15 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.easyfood.data.categories.CategoryMeals
+import com.example.easyfood.data.category_meals.MealsByCategory
 import com.example.easyfood.databinding.PopularItemsBinding
 
 class PopularMealsAdapter : RecyclerView.Adapter<PopularMealsAdapter.PopularMealsViewHolder>() {
-    private var mealsList = ArrayList<CategoryMeals>()
-    lateinit var onItemClick : ((CategoryMeals) -> Unit)
+    private var mealsList = ArrayList<MealsByCategory>()
+    lateinit var onItemClick : ((MealsByCategory) -> Unit)
 
     @SuppressLint("NotifyDataSetChanged")
-    fun setMeals(mealsList : ArrayList<CategoryMeals>){
+    fun setMeals(mealsList : ArrayList<MealsByCategory>){
         this.mealsList = mealsList
         notifyDataSetChanged()
     }
