@@ -10,6 +10,7 @@ import com.example.easyfood.databinding.PopularItemsBinding
 
 class PopularMealsAdapter : RecyclerView.Adapter<PopularMealsAdapter.PopularMealsViewHolder>() {
     private var mealsList = ArrayList<CategoryMeals>()
+    lateinit var onItemClick : ((CategoryMeals) -> Unit)
 
     @SuppressLint("NotifyDataSetChanged")
     fun setMeals(mealsList : ArrayList<CategoryMeals>){
@@ -30,6 +31,10 @@ class PopularMealsAdapter : RecyclerView.Adapter<PopularMealsAdapter.PopularMeal
         Glide.with(holder.itemView)
             .load(mealsList[position].strMealThumb)
             .into(holder.binding.ivPopularItems)
+
+        holder.itemView.setOnClickListener {
+            onItemClick.invoke(mealsList[position])
+        }
     }
 
     class PopularMealsViewHolder(val binding: PopularItemsBinding) : RecyclerView.ViewHolder(binding.root)
