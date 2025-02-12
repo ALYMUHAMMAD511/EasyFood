@@ -33,6 +33,8 @@ class CategoryMealsAdapter : RecyclerView.Adapter<CategoryMealsAdapter.CategoryM
             .load(mealsList[position].strMealThumb)
             .into(holder.binding.ivCategoryMeal)
 
+        holder.binding.tvMeal.text = mealsList[position].strMeal
+
         holder.itemView.setOnClickListener {
             onItemClick.invoke(mealsList[position])
         }

@@ -1,5 +1,6 @@
 package com.example.easyfood.ui.activities
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -18,6 +19,7 @@ class CategoryMealsActivity : AppCompatActivity() {
     private lateinit var categoryMealsViewModel: CategoryMealsViewModel
     private lateinit var categoryMealsAdapter: CategoryMealsAdapter
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -35,7 +37,8 @@ class CategoryMealsActivity : AppCompatActivity() {
         categoryMealsViewModel.getMealsByCategory(intent.getStringExtra(HomeFragment.CATEGORY_NAME)!!)
 
         categoryMealsViewModel.observeCategoryMealsLiveData().observe(this) { mealsList ->
-                categoryMealsAdapter.setMealsList(mealsList)
+            binding.tvMealCategoryCount.text = mealsList.size.toString()
+            categoryMealsAdapter.setMealsList(mealsList)
         }
     }
 
