@@ -9,12 +9,12 @@
     <item
         android:title="@string/favorites"
         android:icon="@drawable/ic_fav"
-        android:id="@+id/categoriesFragment">
+        android:id="@+id/favoritesFragment">
     </item>
 
     <item
         android:title="@string/categories"
         android:icon="@drawable/ic_category"
-        android:id="@+id/favoritesFragment">
+        android:id="@+id/categoriesFragment">
     </item>
 </menu>

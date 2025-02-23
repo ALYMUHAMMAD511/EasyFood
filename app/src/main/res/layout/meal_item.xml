@@ -3,11 +3,12 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="@dimen/_160sdp"
+    android:layout_width="@dimen/_145sdp"
     android:layout_height="wrap_content"
     android:id="@+id/card_meal"
     app:cardCornerRadius="@dimen/_6sdp"
     app:cardUseCompatPadding="true"
+    android:layout_marginEnd="@dimen/_8sdp"
     android:elevation="@dimen/_2sdp">
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -5,13 +5,24 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.example.easyfood.R
 import com.example.easyfood.databinding.ActivityMainBinding
+import com.example.easyfood.pojo.room.MealDatabase
+import com.example.easyfood.ui.view_models.HomeViewModel
+import com.example.easyfood.ui.view_models.HomeViewModelFactory
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
+
+    val homeViewModel: HomeViewModel by lazy {
+        val mealDatabase = MealDatabase.getInstance(this)
+        val homeViewModelFactory = HomeViewModelFactory(mealDatabase)
+        ViewModelProvider(this, homeViewModelFactory)[HomeViewModel::class.java]
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()

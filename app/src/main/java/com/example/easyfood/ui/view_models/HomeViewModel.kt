@@ -11,14 +11,16 @@ import com.example.easyfood.data.category_meals.MealsByCategoryList
 import com.example.easyfood.data.meals.Meal
 import com.example.easyfood.data.meals.Meals
 import com.example.easyfood.pojo.retrofit.RetrofitInstance
+import com.example.easyfood.pojo.room.MealDatabase
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class HomeViewModel : ViewModel() {
+class HomeViewModel(mealDatabase: MealDatabase) : ViewModel() {
     private var randomMealLiveData = MutableLiveData<Meal>()
     private var popularItemsLiveData = MutableLiveData<List<MealsByCategory>>()
     private var categoriesLiveData = MutableLiveData<List<Category>>()
+    private var favoriteMealsLiveData = mealDatabase.mealDao().getAllMeals()
 
 
     fun getRandomMeal() {
@@ -86,6 +88,10 @@ class HomeViewModel : ViewModel() {
 
     fun observeCategoriesLiveData(): LiveData<List<Category>> {
         return categoriesLiveData
+    }
+
+    fun observeFavoriteMealsLiveData() : LiveData<List<Meal>>{
+        return favoriteMealsLiveData
     }
 
 }

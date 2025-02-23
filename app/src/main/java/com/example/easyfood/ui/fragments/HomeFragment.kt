@@ -5,8 +5,8 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
@@ -14,6 +14,7 @@ import com.example.easyfood.data.category_meals.MealsByCategory
 import com.example.easyfood.data.meals.Meal
 import com.example.easyfood.databinding.FragmentHomeBinding
 import com.example.easyfood.ui.activities.CategoryMealsActivity
+import com.example.easyfood.ui.activities.MainActivity
 import com.example.easyfood.ui.activities.MealActivity
 import com.example.easyfood.ui.adapters.CategoriesAdapter
 import com.example.easyfood.ui.adapters.PopularMealsAdapter
@@ -36,7 +37,7 @@ class HomeFragment : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        homeViewModel = ViewModelProvider(this)[HomeViewModel::class.java]
+        homeViewModel = (activity as MainActivity).homeViewModel
         popularMealsAdapter = PopularMealsAdapter()
         categoriesAdapter = CategoriesAdapter()
     }

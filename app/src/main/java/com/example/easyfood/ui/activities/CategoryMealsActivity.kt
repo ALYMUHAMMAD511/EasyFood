@@ -1,6 +1,7 @@
 package com.example.easyfood.ui.activities
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -12,6 +13,9 @@ import com.example.easyfood.R
 import com.example.easyfood.databinding.ActivityCategoryMealsBinding
 import com.example.easyfood.ui.adapters.CategoryMealsAdapter
 import com.example.easyfood.ui.fragments.HomeFragment
+import com.example.easyfood.ui.fragments.HomeFragment.Companion.MEAL_ID
+import com.example.easyfood.ui.fragments.HomeFragment.Companion.MEAL_NAME
+import com.example.easyfood.ui.fragments.HomeFragment.Companion.MEAL_THUMB
 import com.example.easyfood.ui.view_models.CategoryMealsViewModel
 
 class CategoryMealsActivity : AppCompatActivity() {
@@ -40,6 +44,8 @@ class CategoryMealsActivity : AppCompatActivity() {
             binding.tvMealCategoryCount.text = mealsList.size.toString()
             categoryMealsAdapter.setMealsList(mealsList)
         }
+
+        onCategoryItemClick()
     }
 
     private fun prepareCategoryItemsRecyclerView() {
@@ -47,6 +53,16 @@ class CategoryMealsActivity : AppCompatActivity() {
         binding.rvCategoryMeals.apply {
             layoutManager = GridLayoutManager(context, 2, GridLayoutManager.VERTICAL, false)
             adapter = categoryMealsAdapter
+        }
+    }
+
+    private fun onCategoryItemClick() {
+        categoryMealsAdapter.onItemClick = { meal ->
+            val intent = Intent(this, MealActivity::class.java)
+            intent.putExtra(MEAL_ID, meal.idMeal)
+            intent.putExtra(MEAL_NAME, meal.strMeal)
+            intent.putExtra(MEAL_THUMB, meal.strMealThumb)
+            startActivity(intent)
         }
     }
 }
