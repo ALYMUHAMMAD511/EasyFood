@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.ItemTouchHelper
+import androidx.recyclerview.widget.RecyclerView
 import com.example.easyfood.databinding.FragmentFavoritesBinding
 import com.example.easyfood.ui.activities.MainActivity
 import com.example.easyfood.ui.activities.MealActivity
@@ -15,6 +17,7 @@ import com.example.easyfood.ui.fragments.HomeFragment.Companion.MEAL_ID
 import com.example.easyfood.ui.fragments.HomeFragment.Companion.MEAL_NAME
 import com.example.easyfood.ui.fragments.HomeFragment.Companion.MEAL_THUMB
 import com.example.easyfood.ui.view_models.HomeViewModel
+import com.google.android.material.snackbar.Snackbar
 
 class FavoritesFragment : Fragment() {
     private lateinit var binding: FragmentFavoritesBinding
@@ -34,6 +37,31 @@ class FavoritesFragment : Fragment() {
         prepareFavoritesRecyclerView()
         observeFavoritesLiveData()
         onFavoriteMealsClick()
+
+        val itemTouchHelper = object : ItemTouchHelper.SimpleCallback(
+            ItemTouchHelper.UP or ItemTouchHelper.DOWN,
+            ItemTouchHelper.RIGHT or ItemTouchHelper.LEFT
+        ) {
+            override fun onMove(
+                recyclerView: RecyclerView,
+                viewHolder: RecyclerView.ViewHolder,
+                target: RecyclerView.ViewHolder
+            ) = true
+
+            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
+                val position = viewHolder.adapterPosition
+                val deletedMeal = favoriteMealsAdapter.differ.currentList[position]
+                homeViewModel.deleteMeal(deletedMeal)
+
+                Snackbar.make(requireView(), "Meal Deleted", Snackbar.LENGTH_SHORT).setAction(
+                    "Undo"
+                ) {
+                    homeViewModel.insertMeal(deletedMeal)
+                }.show()
+            }
+        }
+
+        ItemTouchHelper(itemTouchHelper).attachToRecyclerView(binding.rvFavorites)
         // Inflate the layout for this fragment
         return binding.root
     }

@@ -42,10 +42,4 @@ class MealViewModel(private val mealDatabase : MealDatabase) : ViewModel() {
             mealDatabase.mealDao().insertMeal(meal)
         }
     }
-
-    fun deleteMeal(meal: Meal) {
-        viewModelScope.launch {
-            mealDatabase.mealDao().deleteMeal(meal)
-        }
-    }
 }

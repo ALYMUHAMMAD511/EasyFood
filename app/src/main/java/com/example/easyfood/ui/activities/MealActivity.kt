@@ -18,6 +18,7 @@ import com.example.easyfood.data.meals.Meal
 import com.example.easyfood.databinding.ActivityMealBinding
 import com.example.easyfood.pojo.room.MealDatabase
 import com.example.easyfood.ui.fragments.HomeFragment
+import com.example.easyfood.ui.view_models.HomeViewModel
 import com.example.easyfood.ui.view_models.MealViewModel
 import com.example.easyfood.ui.view_models.MealViewModelFactory
 

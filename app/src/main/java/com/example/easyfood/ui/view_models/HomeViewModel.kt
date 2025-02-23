@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.easyfood.data.categories.Categories
 import com.example.easyfood.data.categories.Category
 import com.example.easyfood.data.category_meals.MealsByCategory
@@ -12,11 +13,12 @@ import com.example.easyfood.data.meals.Meal
 import com.example.easyfood.data.meals.Meals
 import com.example.easyfood.pojo.retrofit.RetrofitInstance
 import com.example.easyfood.pojo.room.MealDatabase
+import kotlinx.coroutines.launch
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class HomeViewModel(mealDatabase: MealDatabase) : ViewModel() {
+class HomeViewModel(private val mealDatabase: MealDatabase) : ViewModel() {
     private var randomMealLiveData = MutableLiveData<Meal>()
     private var popularItemsLiveData = MutableLiveData<List<MealsByCategory>>()
     private var categoriesLiveData = MutableLiveData<List<Category>>()
@@ -94,4 +96,15 @@ class HomeViewModel(mealDatabase: MealDatabase) : ViewModel() {
         return favoriteMealsLiveData
     }
 
+    fun insertMeal(meal: Meal) {
+        viewModelScope.launch {
+            mealDatabase.mealDao().insertMeal(meal)
+        }
+    }
+
+    fun deleteMeal(meal: Meal) {
+        viewModelScope.launch {
+            mealDatabase.mealDao().deleteMeal(meal)
+        }
+    }
 }
