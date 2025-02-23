@@ -5,16 +5,21 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewmodel.viewModelFactory
 import com.bumptech.glide.Glide
 import com.example.easyfood.R
+import com.example.easyfood.data.meals.Meal
 import com.example.easyfood.databinding.ActivityMealBinding
+import com.example.easyfood.pojo.room.MealDatabase
 import com.example.easyfood.ui.fragments.HomeFragment
 import com.example.easyfood.ui.view_models.MealViewModel
+import com.example.easyfood.ui.view_models.MealViewModelFactory
 
 class MealActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMealBinding
@@ -35,13 +40,16 @@ class MealActivity : AppCompatActivity() {
             insets
         }
         onLoadingCase()
-        mealViewModel = ViewModelProvider(this)[MealViewModel::class.java]
+        val mealDatabase = MealDatabase.getInstance(this)
+        val mealViewModelFactory = MealViewModelFactory(mealDatabase)
+        mealViewModel = ViewModelProvider(this, mealViewModelFactory)[MealViewModel::class.java]
 
         getMealInfoFromIntent()
         setInfoInViews()
         mealViewModel.getMealDetails(mealId)
         observeMealDetails()
         onYoutubeIconClicked()
+        onFavoriteClick()
     }
 
     private fun getMealInfoFromIntent() {
@@ -58,15 +66,17 @@ class MealActivity : AppCompatActivity() {
         binding.collapsingToolbar.title = mealName
     }
 
+    private var mealToSave : Meal? = null
     @SuppressLint("SetTextI18n")
     private fun observeMealDetails() {
         mealViewModel.observeMealDetailsLiveData().observe(this) { meal ->
             meal?.let {
                 onResponseCase()
+                mealToSave = meal
                 binding.tvMealCategory.text = "Category : ${meal.strCategory}"
                 binding.tvMealArea.text = "Area : ${meal.strArea}"
                 binding.ivMealInstructions.text = meal.strInstructions
-                youtubeLink = meal.strYoutube
+                youtubeLink = meal.strYoutube!!
             }
         }
     }
@@ -93,6 +103,15 @@ class MealActivity : AppCompatActivity() {
         binding.youtubeIcon.setOnClickListener {
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse(youtubeLink))
             startActivity(intent)
+        }
+    }
+
+    private fun onFavoriteClick() {
+        binding.btnAddToFavorites.setOnClickListener {
+            mealToSave?.let {
+                mealViewModel.insertMeal(it)
+                Toast.makeText(this, "Meal Saved", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 }

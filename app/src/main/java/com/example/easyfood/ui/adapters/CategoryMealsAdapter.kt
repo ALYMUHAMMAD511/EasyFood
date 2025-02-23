@@ -11,7 +11,7 @@ import com.example.easyfood.databinding.MealItemBinding
 
 class CategoryMealsAdapter : RecyclerView.Adapter<CategoryMealsAdapter.CategoryMealsViewHolder>() {
     private var mealsList = ArrayList<MealsByCategory>()
-    lateinit var onItemClick : ((MealsByCategory) -> Unit)
+    private lateinit var onItemClick : ((MealsByCategory) -> Unit)
 
     @SuppressLint("NotifyDataSetChanged")
     fun setMealsList(mealsList: List<MealsByCategory>){
