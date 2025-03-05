@@ -15,7 +15,7 @@ class CategoryMealsViewModel : ViewModel() {
     private var categoryMealsLiveData = MutableLiveData<List<MealsByCategory>>()
 
     fun getMealsByCategory(categoryName : String) {
-        RetrofitInstance.api.getPopularItems(categoryName)
+        RetrofitInstance.api.getMealsByCategory(categoryName)
             .enqueue(object : Callback<MealsByCategoryList> {
                 override fun onResponse(
                     call: Call<MealsByCategoryList>,

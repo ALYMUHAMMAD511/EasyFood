@@ -22,4 +22,10 @@ interface MealApi {
 
     @GET("filter.php?")
     fun getMealsByCategory(@Query("c") categoryName: String) : Call<MealsByCategoryList>
+
+//    @GET("search.php?")
+//    fun
+
+    //https://www.themealdb.com/api/json/v1/1/search.php?s=Arrabiata
+
 }

@@ -1,6 +1,6 @@
 package com.example.easyfood.data.meals
 
-import androidx.room.Entity
+import  androidx.room.Entity
 import androidx.room.PrimaryKey
 
 @Entity(tableName = "meal_info")
