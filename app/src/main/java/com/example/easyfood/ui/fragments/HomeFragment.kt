@@ -5,11 +5,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import com.example.easyfood.R
 import com.example.easyfood.data.category_meals.MealsByCategory
 import com.example.easyfood.data.meals.Meal
 import com.example.easyfood.databinding.FragmentHomeBinding
@@ -62,11 +63,18 @@ class HomeFragment : Fragment() {
         homeViewModel.getPopularItems()
         observePopularItems()
         onPopularItemClick()
+        onSearchClicked()
 
         prepareCategoriesRecyclerView()
         homeViewModel.getCategories()
         observeCategoriesLiveData()
         onCategoryItemClick()
+    }
+
+    private fun onSearchClicked() {
+        binding.ivSearch.setOnClickListener {
+            findNavController().navigate(R.id.action_homeFragment_to_searchFragment)
+        }
     }
 
     private fun observeRandomMeal() {

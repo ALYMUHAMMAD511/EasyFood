@@ -26,4 +26,5 @@
     <string name="category_name">Category Name</string>
     <string name="meal_image">Meal Image</string>
     <string name="meal_name">Meal Name</string>
+    <string name="search">Search for a Meal</string>
 </resources>

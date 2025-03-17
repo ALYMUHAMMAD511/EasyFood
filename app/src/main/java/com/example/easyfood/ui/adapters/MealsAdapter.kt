@@ -10,7 +10,7 @@ import com.bumptech.glide.Glide
 import com.example.easyfood.data.meals.Meal
 import com.example.easyfood.databinding.MealItemBinding
 
-class FavoriteMealsAdapter : RecyclerView.Adapter<FavoriteMealsAdapter.FavoriteMealsAdapterViewHolder>() {
+class MealsAdapter : RecyclerView.Adapter<MealsAdapter.FavoriteMealsAdapterViewHolder>() {
     lateinit var onItemClick : ((Meal) -> Unit)
 
     class FavoriteMealsAdapterViewHolder (val binding: MealItemBinding) : ViewHolder(binding.root)

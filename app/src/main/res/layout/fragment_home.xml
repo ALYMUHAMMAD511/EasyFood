@@ -35,13 +35,14 @@
                 android:textSize="@dimen/_25ssp"
                 android:textStyle="bold"/>
 
-            <ImageView
+            <ImageButton
                 android:id="@+id/iv_search"
                 android:layout_width="@dimen/_30sdp"
                 android:layout_height="match_parent"
                 android:contentDescription="@string/search_home"
                 android:src="@drawable/ic_baseline_search_24"
-                android:scaleType="centerCrop" />
+                android:scaleType="fitCenter"
+                android:background="?attr/selectableItemBackgroundBorderless"/>
         </LinearLayout>
 
         <TextView

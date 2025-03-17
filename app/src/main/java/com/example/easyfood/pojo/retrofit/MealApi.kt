@@ -11,21 +11,18 @@ interface MealApi {
     @GET("random.php")
     fun getRandomMeal() : Call<Meals>
 
-    @GET("lookup.php?")
+    @GET("lookup.php")
     fun getMealDetailsById(@Query("i") id : String) : Call<Meals>
 
-    @GET("filter.php?")
+    @GET("filter.php")
     fun getPopularItems(@Query("c") categoryName: String) : Call<MealsByCategoryList>
 
     @GET("categories.php")
     fun getCategories() : Call<Categories>
 
-    @GET("filter.php?")
+    @GET("filter.php")
     fun getMealsByCategory(@Query("c") categoryName: String) : Call<MealsByCategoryList>
 
-//    @GET("search.php?")
-//    fun
-
-    //https://www.themealdb.com/api/json/v1/1/search.php?s=Arrabiata
-
+    @GET("search.php")
+    fun searchMeals(@Query("s") searchQuery: String) : Call<Meals>
 }
